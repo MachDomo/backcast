@@ -1,6 +1,8 @@
 var VideoListView = Backbone.View.extend({
 
   initialize: function() {
+
+
     this.collection.on('sync', function() {
       console.log('change occurred');
       this.render();
@@ -11,15 +13,9 @@ var VideoListView = Backbone.View.extend({
 
   render: function() {
     this.$el.children().detach();
-    //this.$el.html(this.template());
-    // this.collection.forEach(this.renderEntry, this);
-    //console.log(this.$el)
-    //loop through this.videos
     this.collection.forEach(function(entry) {
       this.renderEntry(entry);
     }, this);
-    //for each video
-    //this.renderEntry(video)
 
   },
 

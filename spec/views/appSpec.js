@@ -8,8 +8,9 @@ describe('AppView', function() {
     sinon.spy(AppView.prototype, 'render');
     sinon.spy(Backbone, 'ajax');
 
-    view = new AppView();
-    view.videos.reset(fakeVideoData);
+    let fakeVideos = new Videos(fakeVideoData);
+    view = new AppView({collection: fakeVideos});
+
   });
 
   afterEach(function() {
