@@ -1,8 +1,13 @@
 var VideoListEntryView = Backbone.View.extend({
-
+  initialize: function() {
+    $('.video-list-entry-title').on('click', function() {
+      console.log('button work');
+      this.model.select();
+    }, this);
+  },
 
   render: function() {
-    this.$el.html(this.template(this.model.attributes.snippet));
+    this.$el.html(this.template(this.model.attributes));
 
     return this.$el;
   },
@@ -10,11 +15,11 @@ var VideoListEntryView = Backbone.View.extend({
   template: _.template(
     ['<div class="video-list-entry media">',
       '<div class="media-left">',
-      '<img class="media-object" src="https://i.ytimg.com/vi/1w8Z0UOXVaY/default.jpg" />',
+      '<img class="media-object" src="<%- snippet.thumbnails.default.url %>" />',
       '</div>',
       '<div class="media-body">',
-      '<div class="video-list-entry-title"><%- title %></div>',
-      '<div class="video-list-entry-detail"><%- description %></div>',
+      '<div class="video-list-entry-title"><%- snippet.title %></div>',
+      '<div class="video-list-entry-detail"><%- snippet.description %></div>',
       '</div>',
       '</div>'
     ].join('')
