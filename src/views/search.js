@@ -21,16 +21,13 @@ var SearchView = Backbone.View.extend({
   },
 
   handleEnter: function(e) {
-
-
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       var text = $('.form-control').val();
       this.collection.search(text);
     }
   },
 
   template: templateURL('src/templates/search.html')
-
 });
 
 
