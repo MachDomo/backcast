@@ -8,7 +8,7 @@ var Videos = Backbone.Collection.extend({
     Backbone.ajax({
       url: 'https://www.googleapis.com/youtube/v3/search',
       type: 'GET',
-      data: {query: string,
+      data: {q: string,
         maxResults: 5,
         key: window.YOUTUBE_API_KEY,
         part: 'snippet',
@@ -16,11 +16,16 @@ var Videos = Backbone.Collection.extend({
         videoEmbeddable: true
       },
       contentType: 'application/json',
+      outerScope: this,
 
       success: function(data) {
         console.log(data);
         console.log('get request success');
-        return Backbone.parse(data.items);
+        this.outerScope.reset(data.items);
+        //this.outerScope.add(data.items);
+        console.log(this.outerScope);
+        //this.add(data.items);
+        //console.log(this.collection);
       },
 
       error: function(){
@@ -32,6 +37,8 @@ var Videos = Backbone.Collection.extend({
   parse: function(data) {
     return data.items;
   }
+
+  //add: this.add
 
   // parse: function(videoData){
 

@@ -33,7 +33,7 @@ describe('AppView', function() {
     expect(VideoListView.prototype.render).to.have.callCount(1);
   });
 
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
 
     it('should render a Search view', function() {
       expect(SearchView.prototype.render).to.have.callCount(1);
@@ -44,9 +44,9 @@ describe('AppView', function() {
     });
 
     it('should select the first video once new videos are loaded', function() {
-      var model = view.videos.at(0);
+      var model = view.collection.at(0);
       sinon.spy(model, 'select');
-      view.videos.trigger('sync');
+      view.collection.trigger('sync');
       expect(model.select).to.have.been.called;
     });
 

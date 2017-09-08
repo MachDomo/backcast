@@ -2,6 +2,7 @@ var VideoPlayerView = Backbone.View.extend({
 
   initialize: function() {
     this.model = this.collection.at(0);
+    this.model.select();
     this.render();
 
     this.collection.on('select', function(selected) {
@@ -9,6 +10,12 @@ var VideoPlayerView = Backbone.View.extend({
       this.render();
     }, this);
 
+    this.collection.on('reset', function() {
+      this.model = this.collection.at(0);
+      this.model.select();
+      this.render();
+
+    }, this);
 
   },
 
