@@ -20,7 +20,7 @@ describe('VideoListView', function() {
   });
 
   it('should re-render when video collection updates', function() {
-    collection.trigger('sync');
+    collection.trigger('reset');
     expect(view.render).to.have.been.called;
   });
 
